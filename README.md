@@ -14,6 +14,7 @@
 - Estrada Cajamune, Abraham Andres - u202112164
 - Pariona Lucas, José Manuel - u202119257
 - Calle Huayanca, Adrian Alonso - u202011657
+- Burga, Anaely - u202118264
 
 
 <h4 align="center"> Octubre, 2025</h4>
