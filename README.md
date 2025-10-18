@@ -26,6 +26,7 @@ ___
 | Versión | Fecha      | Autor             | Descripción de modificación                                                                           |
 |---------|------------|-------------------|-------------------------------------------------------------------------------------------------------|
 | 1.0     | 14/10/25   | Eduardo Chero     | Creación del archivo base en Markdown para el desarrollo del Final Project                            |
+| 1.1     | 17/10/25   | Eduardo Chero     | Desarrollo del capitulo 1                           |
 
 # Project Report Collaboration Insights
 <img src="assets\ProyectReportCollaborationInsights\Insights_Report.PNG">
@@ -78,16 +79,64 @@ ___
 
 
 # Student Outcome
+| Criterio específico | Acciones realizadas | Conclusiones |
+|---|---|---|
+|La capacidad de aplicar el diseño de ingeniería para producir soluciones que satisfagan necesidades específicas con consideración de salud pública, seguridad y bienestar, así como factores globales, culturales, sociales, ambientales y económicos.|||
+
 # Capítulo I: Introducción
 ## 1.1. Startup Profile (Cliente)
 ### Descripción de la empresa PyME
+Law Connect es un marketplace digital que sirve como nexo entre personas que requieren asesoría legal y abogados profesionales, facilitando un intercambio de servicios. La misión de la empresa es descentralizar el mercado legal en Perú y democratizar el acceso a abogados calificados, basándose en las valoraciones de los propios usuarios.
+
+
+La plataforma utiliza herramientas tecnológicas como videollamadas, chat en vivo y la posibilidad de agendar reuniones presenciales, permitiéndole tener alcance nacional. Además, Law Connect busca ser una solución al desempleo en el sector legal, conectando abogados con clientes potenciales . Su objetivo principal es asegurar que todos tengan acceso a asesoría legal de calidad.
+
 ### Expectativas del cliente
-## 1.2. Consultora de Ciberseguridad (Equipo)
+**Confidencialidad e Integridad de Datos:** Asegurar que la información sensible de los clientes y de los abogados esté protegida contra accesos no autorizados.
+
+**Disponibilidad del Servicio:** Garantizar que la plataforma (aplicación web, APIs, móviles)  se mantenga operativa y no sea susceptible a ataques de denegación de servicio.
+
+**Gestión de Identidad:** Verificar la robustez de los módulos de autenticación, registro  y gestión de sesiones.
+
+**Reporte de Vulnerabilidades:** Recibir un informe claro que identifique y priorice las vulnerabilidades encontradas para poder mitigarlas eficientemente
+
 ### Descripción de la consultora
+BlueLock Security es una consultora de ciberseguridad formada por integrantes del curso enfocados en la investigación, detección y análisis de vulnerabilidades en aplicaciones y servicios de empresas que confian en nosotros para asegurarles que estos no tengan problemas ni generen riesgos de seguridad tanto para estas empresas como para los usuarios.
+
 ### Perfiles de los integrantes y roles Scrum
+| Integrante | Rol | Código | Carrera | Perfil |
+|---|---|---:|---|---|
+| Estrada Cajamune, Abraham Andres <br> ![Abraham Perfil](assets/chapter1/members/abraham.jpg) | Scrum Master |  | Ingeniería de Software |  |
+| Pariona Lucas, José Manuel <br> ![José Perfil](assets/chapter1/members/jose.jpg) | Product Owner |  | Ingeniería de Software | |
+| Chero Eme, Eduardo Andre <br> ![Eduardo Perfil](assets/chapter1/members/eduardo.jpg) | Pentester Lead | U20201F282 | Ingeniería de Software | Estudiante de insgenieria de software con conocimientos en ciberseguridad Experiencia en backend y frontend (Spring Boot, Angular). |
+| Calle Huayanca, Adrian Alonso <br> ![Adrian Perfil](assets/chapter1/members/adrian.jpg) | Pentester | U20201F282 | Ingeniería de Software |  |
+| Burga, Anaely <br> ![Anaely Perfil](assets/chapter1/members/anaely.jpg) | Pentester | U20201F282 | Ingeniería de Software | |
+
 ## 1.3. Solution Profile
 ### Antecedentes y problemática
+El cliente, Law Connect, opera un marketplace digital que maneja un alto volumen de información personal identificable (PII) y datos confidenciales relacionados con casos legales. La problemática de seguridad radica en que, al ser una plataforma que conecta múltiples usuarios (clientes y abogados) y que busca facilitar la búsqueda de asesoría, expone una superficie de ataque considerable.
+
+Las principales preocupaciones de seguridad incluyen:
+
+**Fuga de Datos:** El riesgo de exposición de datos personales de clientes y abogados, o detalles de casos legales confidenciales.
+
+**Acceso No Autorizado:** La posibilidad de que un atacante suplante la identidad de un usuario o abogado, o escale privilegios dentro de la aplicación.
+
+**Manipulación de Datos:** El riesgo de que se alteren las calificaciones de los abogados o los detalles de los contratos.
+
+**Interrupción del Servicio:** Un ataque exitoso podría dejar la plataforma inoperativa, afectando el negocio principal de la startup.
+
 ### Objetivos del pentesting
+
+**Objetivo General:** Evaluar el estado actual de la seguridad de los activos digitales de Law Connect (Aplicación Web, APIs) mediante la ejecución de pruebas de penetración controladas, siguiendo las fases de un hacking ético.
+
+**Objetivos Específicos:**
+- Identificar y explotar vulnerabilidades del OWASP Top 10 en la aplicación web.
+- Evaluar la seguridad de los endpoints de las APIs utilizadas por la plataforma.
+- Realizar escaneos de red y servidores para identificar servicios expuestos y vulnerabilidades conocidas.
+- Priorizar los hallazgos utilizando el estándar CVSS.
+- Elaborar un informe técnico y ejecutivo que incluya un plan de mitigación detallado. 
+
 ## 1.4. Aceptación del Servicio de Pentesting
 
 
