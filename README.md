@@ -107,7 +107,7 @@ BlueLock Security es una consultora de ciberseguridad formada por integrantes de
 | Integrante | Rol | Código | Carrera | Perfil |
 |---|---|---:|---|---|
 | Estrada Cajamune, Abraham Andres <br> ![Abraham Perfil](assets/chapter1/members/abraham.jpg) | Scrum Master |  | Ingeniería de Software |  |
-| Pariona Lucas, José Manuel <br> ![José Perfil](assets/chapter1/members/jose.jpg) | Product Owner |  | Ingeniería de Software | |
+| Pariona Lucas, José Manuel <br> ![José Perfil](assets/chapter1/members/josepariona.png) | Product Owner | U202119257 | Ingeniería de Software | Tengo 20 años. En la actualidad estoy estudiando la carrera de Ingeniería de Software en la Universidad Peruana de Ciencias Aplicadas. Cuento con conocimientos intermedios y avanzados en algunos lenguajes de programación. HTML, CSS, JAVASCRIPT (Avanzado) C++, JAVA, PYTHON (Intermedio) Esto con respecto a la programación, además también de conocimientos con desarrollo web y desarrollo de apps. Me considero una persona responsable, que inspira confianza en el trabajo en grupo. Además, soy bastante adaptativo a la presión y los problemas que pueden llegar a pasar. |
 | Chero Eme, Eduardo Andre <br> ![Eduardo Perfil](assets/chapter1/members/eduardo.jpg) | Pentester Lead | U20201F282 | Ingeniería de Software | Estudiante de insgenieria de software con conocimientos en ciberseguridad Experiencia en backend y frontend (Spring Boot, Angular). |
 | Calle Huayanca, Adrian Alonso <br> ![Adrian Perfil](assets/chapter1/members/adrian.jpg) | Pentester | U20201F282 | Ingeniería de Software |  |
 | Burga, Anaely <br> ![Anaely Perfil](assets/chapter1/members/anaely.jpg) | Pentester | U20201F282 | Ingeniería de Software | |
