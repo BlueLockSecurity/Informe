@@ -144,9 +144,11 @@ https://docs.google.com/document/d/1y76aXW5gGyK-XvYmcVV_zBNBIXcbHb8tMVlu24L5oU0/
 <br>
 
 <h3 align="center"> Alcance Autorizado</h3>
-![Alcance Autorizado](https://raw.githubusercontent.com/BlueLockSecurity/Informe/feature/chapter1/assets/alcanceautorizado.png)
+
+![Alcance Autorizado](assets/alcanceautorizado.png)
 <h3 align="center"> Firmas</h3>
-![Firmas](https://raw.githubusercontent.com/BlueLockSecurity/Informe/feature/chapter1/assets/firmas.png)
+![Firmas](assets/firmas.png)
+
 # Capítulo II: Metodología Ágil y de Pentesting
 ## 2.1. Marco de referencia
 ## 2.2. Backlog inicial
