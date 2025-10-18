@@ -147,6 +147,7 @@ https://docs.google.com/document/d/1y76aXW5gGyK-XvYmcVV_zBNBIXcbHb8tMVlu24L5oU0/
 
 ![Alcance Autorizado](assets/alcanceautorizado.png)
 <h3 align="center"> Firmas</h3>
+
 ![Firmas](assets/firmas.png)
 
 # Capítulo II: Metodología Ágil y de Pentesting
