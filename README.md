@@ -138,7 +138,11 @@ Las principales preocupaciones de seguridad incluyen:
 - Elaborar un informe técnico y ejecutivo que incluya un plan de mitigación detallado. 
 
 ## 1.4. Aceptación del Servicio de Pentesting
-
+Documento de aceptacion del Servicio de Pentesting: https://docs.google.com/document/d/1y76aXW5gGyK-XvYmcVV_zBNBIXcbHb8tMVlu24L5oU0/edit?usp=sharing
+Alcance autorizado: 
+https://github.com/BlueLockSecurity/Informe/blob/feature/chapter1/assets/alcanceautorizado.png
+Firmas: 
+https://github.com/BlueLockSecurity/Informe/blob/feature/chapter1/assets/firmas.png
 
 # Capítulo II: Metodología Ágil y de Pentesting
 ## 2.1. Marco de referencia
