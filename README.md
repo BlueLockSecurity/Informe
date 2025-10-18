@@ -27,6 +27,7 @@ ___
 |---------|------------|-------------------|-------------------------------------------------------------------------------------------------------|
 | 1.0     | 14/10/25   | Eduardo Chero     | Creación del archivo base en Markdown para el desarrollo del Final Project                            |
 | 1.1     | 17/10/25   | Eduardo Chero     | Desarrollo del capitulo 1                           |
+| 1.2     | 18/10/25   | Pariona Jose      | Documento Firmado y Aceptación del Servicio de Pentesting                    |
 
 # Project Report Collaboration Insights
 <img src="assets\ProyectReportCollaborationInsights\Insights_Report.PNG">
