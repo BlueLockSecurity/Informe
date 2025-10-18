@@ -93,14 +93,56 @@ ___
 
 # Capítulo II: Metodología Ágil y de Pentesting
 ## 2.1. Marco de referencia
+Para la ejecución de este proyecto de auditoría de seguridad para Law Connect, nuestro equipo ha adoptado un marco de trabajo ágil basado en Scrum con los estándares técnicos y las fases estructuradas de metodologías líderes en ciberseguridad.
+
+**Scrum:** Utilizamos Scrum para gestionar el proyecto de pentesting como una serie de 5  sprints de corta duración. Cada Sprint se enfoca en un conjunto específico de objetivos de seguridad.
+
+**PTES (Penetration Testing Execution Standard):** Las fases técnicas de nuestro trabajo siguen el estándar PTES, que divide el proceso en:
+
+- Interacciones previas (Planificación)
+- Recolección de Inteligencia (Reconocimiento)
+- Modelado de Amenazas
+- Análisis de Vulnerabilidades (Escaneo)
+- Explotación
+- Post-Explotación
+- Reporte
+
+**OWASP Top 10 (Open Worldwide Application Security Project):** Este recurso nos ayudara como una guia para reconocer las vulnerabilidades mas comunes dentro de una app web y sus servicios asi como sus posibles soluciones.
+
 ## 2.2. Backlog inicial
+
+| ID     | Épica         | Historia de Usuario | Criterios de Aceptación |
+|--------|---------------|---------------------|----------------------------------------|
+| US-01  | Planificación | **Como** Product Owner, **quiero** definir y documentar el alcance autorizado (dominios, IPs) con "Law Connect", **para** asegurar que todas las pruebas se mantengan dentro de las Reglas de Compromiso. | **Given**: tenemos la reunión inicial con el cliente. **When**: se documentan los activos. **Then**: el cliente firma el documento de autorización. |
+| US-02  | Reconocimiento | **Como** pentester externo, **quiero** recolectar información pública sobre "Law Connect", **para** identificar tecnologías, subdominios y empleados sin enviar tráfico directo. | **Given**: el nombre del dominio principal. **When**: utilizo técnicas de `Google Dorking`, `Shodan` y análisis de repositorios. **Then**: se genera un listado de subdominios, tecnologías y posibles correos de empleados. |
+| US-03  | Escaneo       | **Como** pentester, **quiero** identificar todos los hosts vivos dentro del rango de IP autorizado, **para** mapear la infraestructura activa. | **Given**: el rango de IP del cliente. **When**: ejecuto un escaneo de descubrimiento `nmap -sn`. **Then**: se entrega una lista de IPs que respondieron al escaneo. |
+| US-04  | Escaneo       | **Como** pentester, **quiero** escanear los puertos TCP/UDP abiertos en los hosts vivos, **para** enumerar los servicios y versiones expuestos. | **Given**: la lista de IPs activas. **When**: ejecuto un escaneo de puertos y servicios `nmap -sV -p-`. **Then**: se entrega un reporte detallando IP, Puerto, Servicio y Versión de cada servicio expuesto. |
+| US-05  | Reconocimiento | **Como** pentester, **quiero** identificar los proveedores de servicios en la nube y posibles buckets de almacenamiento mal configurados, **para** buscar fugas de información. | **Given**: el dominio del cliente. **When**: utilizo herramientas de enumeración de cloud. **Then**: se documenta si existen buckets públicos o accesibles. |
+| US-06  | Escaneo | **Como** pentester, **quiero** ejecutar un escaneo automatizado con `Nessus` contra los servicios expuestos **para** identificar rápidamente CVEs y fallos de configuración conocidos. | **Given**: los resultados del escaneo `Nmap` **When**: configuro y ejecuto un escaneo completo de `Nessus`, **Then**: se genera un reporte priorizado de vulnerabilidades de infraestructura |
+| US-07  | Escaneo Web | **Como** pentester web, **quiero** realizar un escaneo automatizado con `OWASP ZAP` contra la aplicación web de "Law Connect", **para** identificar vulnerabilidades comunes del OWASP Top 10. | **Given**: la URL de la aplicación web. **When**: ejecuto el escáner activo de `ZAP`. **Then**: se genera un reporte inicial de hallazgos. |
+| US-08  | Enumeración API | **Como** pentester de API, **quiero** enumerar todos los endpoints de la API REST de "Law Connect", **para** entender la superficie de ataque de la API. | **Given**: la URL base de la API. **When**: utilizo fuzzing de directorios y endpoints. **Then**: se entrega un listado de endpoints válidos y sus códigos de respuesta. |
+| US-9  | Enumeración Web | **Como** pentester web, **quiero** mapear manualmente la aplicación web (login, perfiles, búsqueda de abogados, gestión de casos) usando Burp Suite, **para** entender el flujo de la aplicación. | **Given**: la URL de la aplicación y credenciales de prueba. **When**: navego por todas las funciones de cliente y abogado con el proxy interceptando. **Then**: se genera un Site Map en Burp Suite que identifica todas las funciones clave. |
+| US-10  | Explotación Web | **Como** pentester, **quiero** explotar una vulnerabilidad de Inyección SQL en el "buscador de abogados", **para** obtener una Prueba de Concepto (PoC) de extracción de datos. | **Given**: un formulario de búsqueda sospechoso. **When**: ejecuto sqlmap para confirmar y explotar la inyección. **Then**: se obtiene una PoC. |
+| US-11  | Explotación Web | **Como** pentester, **quiero** acceder a los casos legales del "Cliente X" manipulando los IDs en la URL (IDOR), **para** demostrar el control de acceso roto. | **Given**: estoy autenticado como "Cliente A" y conozco el ID de un caso del "Cliente X". **When**: intercepto la solicitud y la cambio por la del "Cliente X". **Then**: se obtiene una PoC mostrando el acceso exitoso a los datos ajenos. |
+| US-12  | Explotación Web | **Como** pentester, **quiero** inyectar un script (XSS) en el perfil del abogado, **para** demostrar que puedo "robar" la cookie de sesión de un cliente que visite ese perfil. | **Given**: un campo vulnerable a XSS en el perfil. **When**: inyecto una carga útil de XSS. **Then**: el script se ejecuta exitosamente en el navegador de la víctima. |
+| US-13  | Explotación Infra. | **Como** pentester, **quiero** explotar un servicio de red vulnerable en un servidor de "Law Connect", **para** obtener una shell inicial. | **Given**: una vulnerabilidad de infraestructura explotable, **When**: utilizo Metasploit para lanzar el exploit correspondiente. **Then**: se obtiene una captura de pantalla de la shell o sesión de Meterpreter. |
+
+
 ## 2.3. Planificación de sprints (Sprint Planning)
+
 ### Sprint 1: Reconocimiento & Escaneo inicial
 ### Sprint 2: Enumeración y vulnerabilidades preliminares
 ### Sprint 3: Explotación controlada (web, APIs)
 ### Sprint 4: Post-explotación y persistencia
 ### Sprint 5: Informe final y recomendaciones
 ## 2.4. Definición de Done (DoD):  
+Para este proyecto, una historia de usuario de seguridad no se considera **"Done"** hasta que el equipo de consultoría haya validado el cumplimiento de los siguientes puntos clave:
+
+- Evidencia Clara: Se debe adjuntar toda la evidencia técnica necesaria para sustentar el hallazgo dentro de este informe.
+- Reproducibilidad: Se debe tener una documentacion clara y entendible tanto para el equipo de trabajo como para el cliente.
+- Documentación de PoC (Prueba de Concepto): Para las historias de usuario de explotación, se debe incluir una Prueba de Concepto controlada, en donde se debe demostrar la explotabilidad de la vulnerabilidad y su impacto potencial, sin causar daños al entorno productivo del cliente.
+- Análisis de Impacto: Cada hallazgo debe ir acompañado de un análisis de riesgo, incluido la asignación de un puntaje de severidad basado en el estándar CVSS y una descripción cualitativa del impacto potencial para el negocio.
+
 ## 2.5. Herramientas: 
 
 
