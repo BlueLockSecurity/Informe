@@ -134,7 +134,204 @@ Para la ejecución de este proyecto de auditoría de seguridad para Law Connect,
 ### Sprint 2: Enumeración y vulnerabilidades preliminares
 ### Sprint 3: Explotación controlada (web, APIs)
 ### Sprint 4: Post-explotación y persistencia
+#### Objetivo del sprint  
+Consolidar el acceso obtenido durante la fase de explotación (Sprint 3), evaluar el impacto real de ese acceso dentro del negocio de Law Connect y simular posibles escenarios de movimiento lateral y persistencia controlada, siempre dentro del alcance autorizado.  
+Este sprint no busca generar daño ni afectar la continuidad del servicio, sino medir el riesgo real que enfrentaría la empresa si un atacante lograra acceso inicial.
+
+#### Historias de usuario atendidas
+
+**US-14 — Post-explotación de acceso inicial**  
+**Como** Red Team simulado, **quiero** evaluar qué nivel de acceso tienen las credenciales/sesiones/shells obtenidas en la fase de explotación, **para** determinar si permiten leer o manipular información sensible del negocio.  
+**Criterio de aceptación:** Se documenta qué tipo de información es accesible (por ejemplo: datos personales de clientes, historiales de casos legales, calificaciones internas), y se clasifica por sensibilidad. No se altera la información productiva.
+
+**US-15 — Movimiento lateral**  
+**Como** atacante con un primer punto de apoyo, **quiero** identificar si puedo pivotear hacia otros servicios internos o cuentas con mayores privilegios, **para** evaluar el riesgo de escalamiento dentro de la infraestructura de Law Connect.  
+**Criterio de aceptación:** Se registra si es posible (o no) acceder a otros hosts, paneles administrativos, bases de datos internas o buckets en la nube. Si no es posible, también se deja constancia como evidencia de buena segmentación.
+
+**US-16 — Persistencia controlada**  
+**Como** atacante simulado, **quiero** evaluar si sería posible mantener acceso persistente (por ejemplo creando un usuario oculto, llave API privilegiada o sesión reutilizable), **para** medir cuánto tiempo podría permanecer un atacante sin ser detectado.  
+**Criterio de aceptación:** Se describe el método de persistencia teórico y/o probado en entorno de prueba, pero NO se deja ninguna puerta trasera activa en producción. Si se crea algo temporal en un entorno permitido, se elimina y se documenta su eliminación.
+
+**US-17 — Riesgo reputacional y legal**  
+**Como** stakeholder del negocio, **quiero** entender el impacto comercial, reputacional y legal de las brechas demostradas, **para** priorizar la mitigación de los hallazgos más críticos.  
+**Criterio de aceptación:** Se entrega un resumen ejecutivo que traduzca los hallazgos técnicos a lenguaje de negocio (por ejemplo: “un atacante podría leer conversaciones abogado-cliente”), incluyendo el posible impacto regulatorio por exposición de datos personales.
+
+#### Actividades realizadas
+
+**1. Análisis de privilegios efectivos**  
+- Validación de qué privilegios reales tenía el acceso inicial obtenido en Sprint 3 (por ejemplo, sesión autenticada, token, shell limitada).  
+- Identificación de qué datos pueden verse o modificarse con ese acceso:
+  - Información personal identificable (PII) de usuarios/abogados.
+  - Historiales de conversaciones o casos legales.
+  - Calificaciones / reputación de abogados dentro de la plataforma.
+- Registro de evidencia en capturas con hora, autor y hash, redactando o difuminando cualquier PII antes de incluirla en el informe.
+
+**2. Evaluación de movimiento lateral**  
+- Intento controlado de pivotear desde el punto de acceso inicial hacia otros activos dentro del alcance autorizado (por ejemplo, panel interno de administración, base de datos, almacenamiento en la nube).  
+- Documentación de:
+  - Qué salto lateral se intentó.
+  - Qué controles defensivos bloquearon el salto (segmentación de red, autenticación adicional, WAF, MFA).
+  - Riesgo si dicho control fallara o estuviera mal configurado en el futuro.
+- Resultado esperado: mapa preliminar de “si caigo aquí, ¿a dónde más puedo llegar?”.
+
+**3. Persistencia (evaluación técnica y teórica)**  
+- Análisis de si sería posible mantener acceso de largo plazo, por ejemplo:
+  - Creando una cuenta administrativa secundaria con un nombre que parezca legítimo (“soporte_tecnico”, “monitoring”).
+  - Generando un token/API key de larga duración.
+  - Subiendo una webshell o script con acceso remoto.
+- Para producción, esto se maneja solo a nivel documental / evidencia conceptual.  
+- En caso de ejecutar una técnica en ambiente de prueba autorizado por el cliente:
+  - Se deja evidencia de creación.
+  - Se elimina el artefacto inmediatamente.
+  - Se adjunta evidencia de eliminación para demostrar conducta ética.
+
+**4. Análisis de impacto para el negocio**  
+- Clasificación de cada acceso según impacto:
+  - **Impacto en privacidad:** ¿Se puede leer PII de clientes/abogados o detalles de casos legales?  
+  - **Impacto reputacional:** ¿Qué pasaría si esa información llega a redes sociales o prensa?  
+  - **Impacto operativo:** ¿Sería posible alterar calificaciones de abogados, disponibilidad de citas o mensajes?  
+  - **Impacto legal/regulatorio:** ¿Existe riesgo de sanción por filtración de datos personales?
+- Este análisis es la base del resumen ejecutivo que se entregará al cliente y alimenta la priorización del Sprint 5.
+
+#### Resultados y evidencias
+
+Estructura sugerida de los artefactos generados en este sprint:
+
+- `evidence/sprint4/post_exploitation_findings.md`  
+  - Descripción de cada acceso post-explotación.
+  - Qué información permite ver/modificar.
+  - Nivel de sensibilidad de esa información.
+  - Capturas (redactadas) con timestamp y hash SHA256.
+
+- `evidence/sprint4/lateral_movement_attempts.md`  
+  - Intentos de movimiento lateral.
+  - Resultado (exitoso / bloqueado).
+  - Riesgo asociado.
+  - Recomendación inmediata (por ejemplo: segmentar mejor, habilitar MFA interno, rotar credenciales).
+
+- `evidence/sprint4/persistence_assessment.md`  
+  - Métodos de persistencia teórica o probada en entorno de prueba.
+  - Evaluación del tiempo potencial de permanencia sin ser detectado.
+  - Evidencia de que no se dejó ninguna puerta trasera activa al finalizar el sprint.
+
+- `reports/sprint4/executive_summary_sprint4.pdf`  
+  - Documento breve en lenguaje no técnico que explica:
+    - Qué tan expuestos están los datos sensibles.
+    - Qué tan fácil sería para un atacante mantenerse dentro del sistema.
+    - Cuál sería el daño reputacional/comercial si esa información se filtrara.
+
+#### Retrospectiva del sprint
+
+**Lo que salió bien**  
+- Se tradujo el acceso técnico en impacto real para el negocio (por ejemplo, “acceso a chats abogado-cliente” en vez de solo “XSS”).  
+- Se estableció una metodología clara para documentar evidencia con trazabilidad (timestamp + hash).
+
+**Bloqueadores / riesgos**  
+- Algunas actividades debieron limitarse por razones éticas/legales: no se ejecutaron técnicas destructivas ni se modificaron datos productivos.  
+- En ciertos casos no se pudo confirmar si el cliente detectaría el acceso malicioso en tiempo real (falta de monitoreo/alertas).
+
+**Acciones para el siguiente sprint (Sprint 5)**  
+- Preparar la matriz final de vulnerabilidades con severidad e impacto.  
+- Redactar la versión ejecutiva del informe para el cliente (lenguaje de negocio, impacto reputacional y legal).  
+- Construir el plan de mitigación priorizado (qué arreglar primero, por qué y con qué urgencia).
 ### Sprint 5: Informe final y recomendaciones
+#### Objetivo del sprint  
+El objetivo principal de este sprint fue consolidar todos los hallazgos obtenidos durante los sprints anteriores y elaborar los informes técnicos y ejecutivos finales, junto con un plan de mitigación priorizado. Además, se preparó la presentación ejecutiva y el video “About-the-Team” que resumen los resultados del proyecto y las lecciones aprendidas.
+
+#### Historias de usuario atendidas
+
+**US-18 — Informe técnico consolidado**  
+**Como** cliente técnico, **quiero** recibir un informe detallado con todas las vulnerabilidades encontradas, su evidencia y pasos de reproducción, **para** que el equipo de desarrollo pueda corregirlas eficazmente.  
+**Criterio de aceptación:** Documento técnico que contenga descripción, impacto, severidad (CVSS), PoC y recomendaciones específicas por vulnerabilidad.
+
+**US-19 — Informe ejecutivo / riesgo de negocio**  
+**Como** stakeholder del negocio, **quiero** un resumen ejecutivo que traduzca los hallazgos técnicos a un lenguaje de riesgo empresarial, **para** tomar decisiones informadas sobre inversión en seguridad.  
+**Criterio de aceptación:** Reporte breve que priorice los riesgos más graves para la reputación, cumplimiento legal y continuidad del servicio.
+
+**US-20 — Roadmap de mitigación priorizada**  
+**Como** dirección técnica de Law Connect, **quiero** recibir un plan de acción priorizado, **para** atender primero los hallazgos de mayor impacto.  
+**Criterio de aceptación:** Tabla con las vulnerabilidades clasificadas por severidad (Alta, Media, Baja), responsable sugerido, plazo estimado y dependencia técnica.
+
+**US-21 — Presentación ejecutiva y cierre de proyecto**  
+**Como** equipo consultor, **quiero** elaborar una presentación visual y un video de cierre que muestren los resultados, aprendizajes y recomendaciones clave, **para** cerrar formalmente el engagement con el cliente.  
+**Criterio de aceptación:** Presentación (.pptx / .pdf) que resuma metodología, hallazgos críticos y plan de mitigación, acompañada del video “About-the-Team”.
+
+#### Actividades realizadas
+
+**1. Consolidación de hallazgos técnicos**  
+- Integración de los resultados de los sprints 1 al 4.  
+- Redacción de un informe unificado que incluya:
+  - Descripción técnica de cada vulnerabilidad.
+  - Evidencia adjunta (capturas, hashes, PoC redactadas).
+  - Nivel de severidad con base en CVSS v3.
+  - Impacto técnico y de negocio.
+  - Recomendación concreta de remediación.
+
+**2. Elaboración del informe ejecutivo**  
+- Síntesis de los hallazgos más relevantes para el negocio, explicando:  
+  - Qué podría ocurrir si se explotan las vulnerabilidades.  
+  - Qué impacto tendría en reputación, usuarios y cumplimiento normativo.  
+  - Qué medidas se deben tomar de inmediato.  
+- Lenguaje orientado a la alta dirección, evitando tecnicismos.
+
+**3. Priorización y plan de mitigación**  
+- Clasificación de vulnerabilidades según impacto y probabilidad:  
+  - **Alta:** Filtración de datos personales o acceso a información sensible.  
+  - **Media:** Riesgos moderados, vulnerabilidades técnicas sin explotación directa.  
+  - **Baja:** Problemas de configuración o buenas prácticas.  
+- Asignación de responsables y plazos sugeridos.  
+- Creación de matriz de mitigación (`reports/final/mitigation_plan.xlsx`).
+
+**4. Preparación de la presentación ejecutiva**  
+- Creación de diapositivas resumen (`reports/final/keynote.pdf`) con:  
+  - Introducción y metodología (Scrum + PTES).  
+  - Top 5 vulnerabilidades críticas.  
+  - Impacto en negocio y riesgo reputacional.  
+  - Plan de mitigación priorizado.  
+  - Lecciones aprendidas y siguientes pasos recomendados.
+
+**5. Producción del video “About-the-Team”**  
+- Grabación breve del equipo explicando sus roles, aprendizajes y contribución individual.  
+- Se incluyeron fragmentos de capturas de herramientas utilizadas (Nmap, Nessus, ZAP, Burp Suite) y reflexión sobre la importancia de la ética en ciberseguridad.  
+- El video sirve como evidencia del *Student Outcome 2* (trabajo en equipo y comunicación profesional).
+
+#### Resultados y evidencias
+
+Estructura de entregables generados en el sprint:
+
+- `reports/final/upc-pre-202520-1asi0665-<NRC>-BlueLockSecurity-report-final.pdf`  
+  - Informe técnico completo, con todas las fases documentadas y evidencias anexas.
+
+- `reports/final/upc-pre-202520-1asi0665-<NRC>-BlueLockSecurity-executive-summary.pdf`  
+  - Resumen ejecutivo en lenguaje de negocio.
+
+- `reports/final/upc-pre-202520-1asi0665-<NRC>-BlueLockSecurity-mitigation-plan.xlsx`  
+  - Plan de mitigación priorizado (por impacto y urgencia).
+
+- `reports/final/upc-pre-202520-1asi0665-<NRC>-BlueLockSecurity-keynote.pdf`  
+  - Presentación ejecutiva utilizada en la exposición final.
+
+- `reports/final/about-the-team.mp4`  
+  - Video del equipo con presentación personal y conclusiones finales.
+
+- `reports/final/hashes_sha256.txt`  
+  - Hashes SHA256 de cada archivo entregado para garantizar integridad y trazabilidad.
+
+#### Retrospectiva del sprint
+
+**Fortalezas**  
+- Se logró integrar todos los hallazgos en un solo informe coherente y profesional.  
+- El equipo aplicó buenas prácticas de documentación, nomenclatura y trazabilidad.  
+- El video y la presentación fortalecieron las habilidades de comunicación técnica del grupo.
+
+**Debilidades / aprendizajes**  
+- Algunos hallazgos no pudieron reproducirse completamente por limitaciones de tiempo o restricciones del cliente.  
+- Faltó disponibilidad de herramientas comerciales para validar ciertos CVEs (dependencia de licencias).  
+
+**Acciones de mejora y cierre**  
+- Recomendación al cliente: implementar un proceso continuo de gestión de vulnerabilidades y revisiones trimestrales de seguridad.  
+- Recomendación académica: reforzar automatización de pipelines de evidencias (hashing, uploads y reportes).  
+- El equipo concluye que la aplicación de metodologías ágiles en pentesting mejora la trazabilidad, la comunicación con el cliente y la eficiencia del trabajo técnico.
 ## 2.4. Definición de Done (DoD):  
 Para este proyecto, una historia de usuario de seguridad no se considera **"Done"** hasta que el equipo de consultoría haya validado el cumplimiento de los siguientes puntos clave:
 
