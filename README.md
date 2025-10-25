@@ -419,10 +419,47 @@ https://github.com/BlueLockSecurity/Recursos/tree/main/sprint1
 <br>
 
 ## Sprint 2 – Enumeración y Vulnerabilidades
-### Historias de usuario atendidas
-### Actividades
-### Resultados y evidencias
-### Retrospectiva
+## Sprint 2 — Ejecución: Enumeración y Vulnerabilidades
+
+### Resumen de Ejecución
+
+En Sprint 2 se priorizó la precisión y la trazabilidad. Las actividades se ejecutaron en el entorno autorizado, documentando todos los comandos, hallazgos y artefactos para mantener reproducibilidad y evidencia aceptable para auditoría.
+
+### Historias de Usuario Atendidas y Logros
+
+| ID | Historia de Usuario | Logro Principal |
+| :--- | :--- | :--- |
+| **US-08** | Enumeración detallada de servicios y versiones. | `Nmap` + NSE identificó versiones exactas de Apache/Nginx y framework backend; búsqueda de CVEs con `searchsploit`. |
+| **US-09** | Fuzzing de directorios/archivos. | `ffuf` / `gobuster` detectaron `/api/docs/old` y `config.yaml.bak` (backup expuesto). |
+| **US-10** | Análisis de autenticación y registro. | Burp mostró cookies de sesión sin `HttpOnly` ni `Secure` → riesgo de robo de sesión vía XSS. |
+| **US-11** | Mapeo de API y pruebas de parámetros ID. | Endpoint `/attorney?id=1` respondió a IDs secuenciales → indicio claro de IDOR. |
+| **US-12** | Verificación de tecnologías y credenciales por defecto. | Se confirmaron versiones con CVEs publicados; no se detectaron credenciales por defecto evidentes. |
+
+### Actividades Clave (Tabla con Comandos/Ejemplos)
+
+| Foco | Herramienta | Comando / Acción Típica | Resultado / Hallazgo |
+| :--- | :--- | :--- | :--- |
+| **A. Enumeración Infraestructura** | `Nmap` + NSE | `nmap -sV --script=vuln,http-headers,http-enum <targets>` | Identificó versión vulnerable del servidor (CVE-...). |
+| **B. Descubrimiento de Contenido Oculto** | FFUF | `ffuf -w /usr/share/wordlists/dirb/common.txt -u https://<target>/FUZZ -mc 200,301,302` | Reveló `/temp_uploads` con logs públicos — Riesgo Alto. |
+| **C. Análisis de Sesiones** | Burp Suite | Interceptar login y revisar cookies / headers | Cookies sin flags `HttpOnly`/`Secure`. |
+| **D. Pruebas de Acceso Lógico (IDOR)** | Burp Repeater | Repetir `/api/v1/attorney?id=<ID>` variando IDs | Exposición de datos de otros usuarios → IDOR. |
+| **E. Errores de Servidor** | cURL / Burp | `curl -i -X GET https://<target>/<ruta_inexistente>` | `500` con stack trace → info infra interna (A05). |
+
+### Ejemplos Listos para Copiar
+
+```bash
+# Nmap enumeración con scripts
+nmap -sV --script=vuln,http-headers,http-enum -p 1-65535 <target>
+
+# FFUF: fuzzing de directorios
+ffuf -w /usr/share/wordlists/dirb/common.txt -u https://<target>/FUZZ -mc 200,301,302 -o ffuf_results.json
+
+# Gobuster ejemplo
+gobuster dir -u https://<target>/ -w /usr/share/wordlists/dirb/common.txt -x .php,.bak,.zip
+
+# Curl para observar headers
+curl -I https://<target>/login
+```
 ## Sprint 3 – Explotación
 ### Historias de usuario atendidas
 ### Actividades
