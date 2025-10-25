@@ -598,6 +598,9 @@ evidence/sprint1/zap_report_{fecha}.html
 
 evidence/sprint1/zap_passive_findings.json
 
+
+![Bash Sprint 1 ](assets/zapreport.jpg)
+
 Observación: para cualquier prueba que interactúe con endpoints sensibles, usar cuentas de prueba y ventanas autorizadas por el cliente.
 <br>
 **F. Enumeración cloud / buckets**
