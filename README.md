@@ -394,6 +394,20 @@ Registro de actividades: cada acción debe tener un registro en evidence/sprint1
 Confidencialidad: ninguna evidencia que contenga PII o datos sensibles debe subirarse al repositorio público; usar carpeta encriptada / repositorio privado o incluir solo metadatos y capturas redactadas.
 
 Entrega intermedia al cliente: entregar un Executive Summary (PDF) que contenga: alcance del sprint, actividades realizadas, nivel de cobertura (hosts escaneados / totales), riesgos observados a alto nivel (sin detalles explotables), y next steps. Archivo sugerido: reports/sprint1/executive_summary_sprint1_{fecha}.pdf.
+
+Evidencias de resultados obtenidos en KALI LINUX:
+![Alcance Autorizado](assets/sprint1evidencia1.png)
+
+<br>
+
+![Alcance Autorizado](assets/sprint1evicencia.png)
+
+
+Y link de archivos de este primer sprint con sus resultados: 
+<br>
+https://github.com/BlueLockSecurity/Recursos/tree/main/sprint1
+<br>
+
 ## Sprint 2 – Enumeración y Vulnerabilidades
 ### Historias de usuario atendidas
 ### Actividades
