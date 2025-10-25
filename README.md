@@ -398,6 +398,7 @@ Entrega intermedia al cliente: entregar un Executive Summary (PDF) que contenga:
 Archivo Bash con comandos utilzados para el 100% de este sprint 1:
 <br>
 ![](assets/bashsprint1.png)
+
 Link donde se encuentra el Archivo sh. 
 <br>
 https://github.com/BlueLockSecurity/Recursos/blob/main/sprint1/recon_kali_sprint3.sh
