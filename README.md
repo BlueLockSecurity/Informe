@@ -395,6 +395,13 @@ Confidencialidad: ninguna evidencia que contenga PII o datos sensibles debe subi
 
 Entrega intermedia al cliente: entregar un Executive Summary (PDF) que contenga: alcance del sprint, actividades realizadas, nivel de cobertura (hosts escaneados / totales), riesgos observados a alto nivel (sin detalles explotables), y next steps. Archivo sugerido: reports/sprint1/executive_summary_sprint1_{fecha}.pdf.
 
+Archivo Bash con comandos utilzados para el 100% de este sprint 1:
+<br>
+![](assets/bashsprint1.png)
+Link donde se encuentra el Archivo sh. 
+<br>
+https://github.com/BlueLockSecurity/Recursos/blob/main/sprint1/recon_kali_sprint3.sh
+
 Evidencias de resultados obtenidos en KALI LINUX:
 <br>
 ![](assets/sprint1evidencia.png)
