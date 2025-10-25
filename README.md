@@ -397,7 +397,9 @@ Entrega intermedia al cliente: entregar un Executive Summary (PDF) que contenga:
 
 Archivo Bash con comandos utilzados para el 100% de este sprint 1:
 <br>
+
 ![](assets/bashsprint1.png)
+<br>
 
 Link donde se encuentra el Archivo sh. 
 <br>
