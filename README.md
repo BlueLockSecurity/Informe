@@ -736,17 +736,31 @@ En Sprint 2 se priorizó la precisión y la trazabilidad. Las actividades se eje
 
 ```bash
 # Nmap enumeración con scripts
-nmap -sV --script=vuln,http-headers,http-enum -p 1-65535 https://frontendgit-09482557-4f090.web.app/
+nmap -sV --script=vuln,http-headers,http-enum -p 1-65535 https://lawconnect-backend-latest.onrender.com
+
+```
+
+```bash
 
 # FFUF: fuzzing de directorios
-ffuf -w /usr/share/wordlists/dirb/common.txt -u https://frontendgit-09482557-4f090.web.app/FUZZ -mc 200,301,302 -o ffuf_results.json
-
-# Gobuster ejemplo
-gobuster dir -u https://frontendgit-09482557-4f090.web.app/ -w /usr/share/wordlists/dirb/common.txt -x .php,.bak,.zip
-
-# Curl para observar headers
-curl -I https://frontendgit-09482557-4f090.web.app/login
+ffuf -w /usr/share/wordlists/dirb/common.txt -u https://lawconnect-backend-latest.onrender.com/FUZZ -mc 200,301,302 -o ffuf_results.json
 ```
+
+![FFUF Fuzzing](assets/chapter3/ffuf.png)
+
+```bash
+# Gobuster ejemplo
+gobuster dir -u https://lawconnect-backend-latest.onrender.com/ -w /usr/share/wordlists/dirb/common.txt -x .php,.bak,.zip
+```
+
+![Gobuster](assets/chapter3/gobuster.png)
+
+```bash
+# Curl para observar headers
+curl -I https://lawconnect-backend-latest.onrender.com
+```
+
+![Curl](assets/chapter3/curl.png)
 ## Sprint 3 – Explotación
 ### Historias de usuario atendidas
 ### Actividades
