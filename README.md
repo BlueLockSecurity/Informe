@@ -132,6 +132,57 @@ Para la ejecución de este proyecto de auditoría de seguridad para Law Connect,
 
 ### Sprint 1: Reconocimiento & Escaneo inicial
 ### Sprint 2: Enumeración y vulnerabilidades preliminares
+
+**Resumen Objetivo**
+
+El propósito del Sprint 2 es convertir los hallazgos de reconocimiento (Sprint 1) en vectores de ataque plausibles mediante una enumeración profunda y un análisis de vulnerabilidades manual y semiautomático. El enfoque es detectar y documentar fallos de alto impacto —particularmente Broken Access Control (A01) y Security Misconfiguration (A05)— para priorizarlos en una matriz preliminar que oriente Sprint 3 (explotación controlada). No se realizará explotación destructiva en este sprint.
+
+***
+
+### Metadatos del Sprint
+
+| Detalle | Valor |
+| :--- | :--- |
+| **Duración Propuesta** | 5 días hábiles |
+| **Alcance** | Sólo hosts y dominios autorizados en el documento de aceptación. |
+| **Entregables Esperados** | Matriz preliminar con ≥5 hallazgos, logs de fuzzing, proyecto Burp, mapa de API, trazabilidad por historia. |
+
+***
+
+### Alcance Detallado
+
+Se trabajará sobre:
+
+* **Aplicación web** — módulos: Login, Registro, Perfil.
+* **API REST** — descubrimiento y mapeo de endpoints/parametrización.
+* **Servicios de red** — puertos y servicios expuestos.
+* **Cuentas de prueba** — uso si el cliente las proporciona.
+
+### Técnicas y Metodología
+
+1.  **Fuzzing de contenido (recon profundo):** `ffuf`, `gobuster` para descubrir rutas no enlazadas (ej. `/admin_old`), backups (`.zip`, `.bak`) y archivos de configuración (`.env`, `.yaml.bak`).
+2.  **Análisis manual con proxy:** Burp Suite Pro para inspección de flujo, manipulación de parámetros, sesiones y cookies (verificar `HttpOnly`, `Secure`), encabezados y tokens.
+3.  **Enumeración de infraestructura:** `nmap` + NSE (scripts `vuln`, `http-enum`, `auth`) para detectar versiones, servicios y CVEs conocidos.
+4.  **Pruebas de lógica y control de acceso:** búsqueda de IDOR y fallos de lógica alterando parámetros (`id=`, `username=`) en endpoints API.
+5.  **Práctica Segura:** todas las pruebas no destructivas; cualquier necesidad de pruebas intrusivas requiere autorización escrita y coordinación con el PO.
+
+### Historias de Usuario (Backlog) Incluidas
+
+* **US-08:** Enumeración detallada de servicios y versiones.
+* **US-09:** Fuzzing de directorios/archivos para rutas sensibles.
+* **US-10:** Análisis manual de mecanismos de autenticación y registro.
+* **US-11:** Mapeo de endpoints de API y prueba de parámetros de ID.
+* **US-12:** Verificación de tecnologías desactualizadas y credenciales por defecto.
+
+### Criterios de Aceptación (Definition of Done — DoD)
+
+* Matriz preliminar de hallazgos con ≥5 vulnerabilidades, cada una con CVSS v3.1 (score + severidad).
+* Evidencia cruda: logs completos de `ffuf`/`gobuster` y capturas/exportaciones de Burp que corroboren hallazgos.
+* Mapa de API: endpoints, métodos, parámetros, códigos de respuesta observados y ejemplos de payloads.
+* Trazabilidad por historia: cada US (US-08 → US-12) con evidencia reproducible y comandos usados.
+* Reporte preliminar listo para priorizar Sprint 3.
+
+***
 ### Sprint 3: Explotación controlada (web, APIs)
 ### Sprint 4: Post-explotación y persistencia
 #### Objetivo del sprint  
