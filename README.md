@@ -278,8 +278,14 @@ Se trabajará sobre:
 ### Historias de Usuario (Backlog) Incluidas
 
 * **US-08:** Enumeración detallada de servicios y versiones.
+  
+  - De manera similar, para la enumeración de infraestructura, los datos informativos del escáner de red Nessus se utilizaron como mapa inicial. Se planificó utilizar Nmap y scripts de enumeración para corroborar las versiones específicas de los servicios web y middleware reportadas por Nessus, buscando confirmación de posibles Exposiciones de Datos Sensibles.
+    
 * **US-09:** Fuzzing de directorios/archivos para rutas sensibles.
 * **US-10:** Análisis manual de mecanismos de autenticación y registro.
+  
+  - Un factor determinante en la priorización de las pruebas manuales de este sprint fue la necesidad de verificar los hallazgos del escaneo automatizado. El reporte de OWASP ZAP (ejecutado en el Sprint 1) levantó alertas de baja severidad sobre la falta de flags de seguridad en las cookies de sesión (HttpOnly y Secure), lo cual, si se confirma, cataloga el fallo como una Mala Configuración de Seguridad (OWASP A05) y facilita ataques de XSS.
+    
 * **US-11:** Mapeo de endpoints de API y prueba de parámetros de ID.
 * **US-12:** Verificación de tecnologías desactualizadas y credenciales por defecto.
 
@@ -735,6 +741,8 @@ En Sprint 2 se priorizó la precisión y la trazabilidad. Las actividades se eje
 | **D. Pruebas de Acceso Lógico (IDOR)** | Burp Repeater | Repetir `/api/v1/attorney?id=<ID>` variando IDs | Exposición de datos de otros usuarios → IDOR. |
 | **E. Errores de Servidor** | cURL / Burp | `curl -i -X GET https://<target>/<ruta_inexistente>` | `500` con stack trace → info infra interna (A05). |
 
+- Verificación de Cookies Inseguras (Trazabilidad ZAP) : Tal como fue alertado por el reporte preliminar de OWASP ZAP, se procedió a la verificación manual de las cookies de sesión de la aplicación. Mediante la intercepción del tráfico con Burp Suite [Insertar captura de Burp showing set cookie without httponly], se confirmó que la cabecera Set-Cookie carece de los flags HttpOnly y Secure. Este fallo constituye una vulnerabilidad de Configuración de Seguridad Incorrecta (OWASP A05), ya que permite que las cookies sean accesibles por código JavaScript, facilitando el robo de sesión en caso de un ataque de Cross-Site Scripting (XSS).
+- Corroboración de Versiones de Servicios (Trazabilidad Nessus): Los resultados del escaneo de infraestructura de Nessus indicaron que varios servicios estaban utilizando versiones de software que podrían ser vulnerables. Para corroborar esta información, se ejecutaron scripts avanzados de Nmap (ej. nmap -sV --script=http-headers). La verificación confirmó las versiones exactas de los servidores web, revelando una configuración de header que expone información de la infraestructura y que se clasificó como una fuga de datos, trasladándose a la Matriz de Vulnerabilidades.
 ### Ejemplos Listos para Copiar
 
 ```bash
