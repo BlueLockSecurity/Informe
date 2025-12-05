@@ -24,9 +24,9 @@ ___
 
 | Versión | Fecha      | Autor             | Descripción de modificación                                                                           |
 |---------|------------|-------------------|-------------------------------------------------------------------------------------------------------|
-| 1.0     | 14/10/25   | Eduardo Chero     | Creación del archivo base en Markdown para el desarrollo del Final Project                            |
-| 1.1     | 17/10/25   | Eduardo Chero     | Desarrollo del capitulo 1                           |
-| 1.2     | 18/10/25   | Pariona Jose      | Documento Firmado y Aceptación del Servicio de Pentesting                    |
+| 1.0     | 14/10/25   | Pariona Jose      | Creación del archivo base en Markdown para el desarrollo del Final Project                            |
+| 1.1     | 17/10/25   | Pariona Jose     | Documento Firmado y Aceptación del Servicio de Pentesting                     |
+| 1.2     | 05/12/25   | Pariona Jose      | Desarollo del Capitulo 1 , 2 y 3 y Evidencias                  |
 
 # Project Report Collaboration Insights
 <img src="assets\ProyectReportCollaborationInsights\Insights_Report.PNG">
@@ -81,7 +81,7 @@ ___
 # Student Outcome
 | Criterio específico | Acciones realizadas | Conclusiones |
 |---|---|---|
-|La capacidad de aplicar el diseño de ingeniería para producir soluciones que satisfagan necesidades específicas con consideración de salud pública, seguridad y bienestar, así como factores globales, culturales, sociales, ambientales y económicos.| **TP1** **PARIONA LUCAS JOSE MANUEL** <br> Se elaboró el Documento de Aceptación del Servicio de Pentesting, definiendo formalmente el alcance, restricciones y condiciones éticas para garantizar la seguridad y privacidad de los sistemas del cliente. <br> Se planificó el Sprint 1 (Reconocimiento y Escaneo inicial) aplicando principios de ingeniería segura y metodologías ágiles para estructurar un proceso controlado, reproducible y ético. <br> Se ejecutaron las actividades de reconocimiento, escaneo y documentación de resultados bajo criterios de mínima intrusión, respeto por los activos del cliente y cumplimiento de buenas prácticas internacionales de ciberseguridad. | **TP1** En la TP1: El proyecto demostró la aplicación efectiva del diseño de ingeniería orientado a la seguridad, permitiendo generar soluciones que protegen la integridad de la información y el bienestar digital del cliente. Las decisiones técnicas se tomaron considerando factores globales, sociales y económicos, promoviendo la cultura de seguridad responsable y el desarrollo sostenible de servicios tecnológicos confiables.|
+|La capacidad de aplicar el diseño de ingeniería para producir soluciones que satisfagan necesidades específicas con consideración de salud pública, seguridad y bienestar, así como factores globales, culturales, sociales, ambientales y económicos.| **TF1** **PARIONA LUCAS JOSE MANUEL** <br> Se elaboró el Documento de Aceptación del Servicio de Pentesting, definiendo formalmente el alcance, restricciones y condiciones éticas para garantizar la seguridad y privacidad de los sistemas del cliente. <br> Se planificó el Sprint 1 Y 2 de Capitulo 1, 2 y 3 (Reconocimiento y Escaneo inicial) aplicando principios de ingeniería segura y metodologías ágiles para estructurar un proceso controlado, reproducible y ético. <br> Se ejecutaron las actividades de reconocimiento, escaneo y documentación de resultados bajo criterios de mínima intrusión, respeto por los activos del cliente y cumplimiento de buenas prácticas internacionales de ciberseguridad. | **TF1** En la TF1: El proyecto demostró la aplicación efectiva del diseño de ingeniería orientado a la seguridad, permitiendo generar soluciones que protegen la integridad de la información y el bienestar digital del cliente. Las decisiones técnicas se tomaron considerando factores globales, sociales y económicos, promoviendo la cultura de seguridad responsable y el desarrollo sostenible de servicios tecnológicos confiables.|
 
 # Capítulo I: Introducción
 ## 1.1. Startup Profile (Cliente)
