@@ -29,8 +29,16 @@ ___
 | 1.2     | 05/12/25   | Pariona Jose      | Desarollo del Capitulo 1 , 2 y 3 y Evidencias                  |
 
 # Project Report Collaboration Insights
-<img src="assets\ProyectReportCollaborationInsights\Insights_Report.PNG">
+**Informe:**
+**Contributors:**
+<p align="center">
+  <img src="assets/contributorsanti.png" alt="Logo" width="200"/>
+</p>
 
+**Network:**
+<p align="center">
+  <img src="assets/networkanti.png" alt="Logo" width="200"/>
+</p>
 # Contenido
 
 1.  [Student Outcome](#student-outcome)
