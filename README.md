@@ -32,12 +32,12 @@ ___
 **Informe:**
 **Contributors:**
 <p align="center">
-  <img src="assets/contributorsanti.png" alt="Logo" width="200"/>
+  <img src="assets/contributorsanti.png" alt="Logo" width="500"/>
 </p>
 
 **Network:**
 <p align="center">
-  <img src="assets/networksanti.png" alt="Logo" width="200"/>
+  <img src="assets/networksanti.png" alt="Logo" width="500"/>
 </p>
 # Contenido
 
