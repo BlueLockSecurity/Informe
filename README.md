@@ -37,7 +37,7 @@ ___
 
 **Network:**
 <p align="center">
-  <img src="assets/networkanti.png" alt="Logo" width="200"/>
+  <img src="assets/networksanti.png" alt="Logo" width="200"/>
 </p>
 # Contenido
 
